@@ -384,19 +384,19 @@ data_ymdh[, year:= data.table::year(timestamp)]
 data_ymdh[, month:= data.table::month(timestamp)]
 datacombine[, day:= data.table::mday(timestamp)]
 # 計算每個月的平均溫度
-aggrmonth <- aggregate(TX01 ~ month, data = data_ymdh,mean)
+aggrmonth <- aggregate(TX01 ~ month, data = data_ymdh,mean, na.rm = TRUE)
 dim(data_ymdh)
 head(data_ymdh)
 # 計算每個年的平均溫度
-aggryear <- aggregate(TX01 ~ year, data = data_ymdhe,mean)
+aggryear <- aggregate(TX01 ~ year, data = data_ymdhe,mean, na.rm = TRUE)
 #計算每月平均累積降水
-aggrrain <- aggregate(PP01 ~ month, data = data_ymdhe,mean)
+aggrrain <- aggregate(PP01 ~ month, data = data_ymdhe,mean, na.rm = TRUE)
 #計算每日最低溫平均
-aggrday_low <- aggregate(TX01 ~ day, data = datacombine,min)
+aggrday_low <- aggregate(TX01 ~ day, data = datacombine,min, na.rm = TRUE)
 mean(aggrday_low$TX01)
 #計算每日最高溫平均
-aggrdayh_high <- aggregate(TX01 ~ day, data = datacombine,max)
+aggrdayh_high <- aggregate(TX01 ~ day, data = datacombine,max, na.rm = TRUE)
 mean(aggrday_high$TX01)
 #計算每日溫平均
-aggrday <- aggregate(TX01 ~ day, data = datacombine,mean)
+aggrday <- aggregate(TX01 ~ day, data = datacombine,mean, na.rm = TRUE)
 
